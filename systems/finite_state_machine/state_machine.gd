@@ -8,6 +8,9 @@ class_name StateMachine extends Node
 
 
 func _ready() -> void:
+	# connect the finished signal for each of the nodes to the _transition_to_next_state func
+	# for some reason this didn't work when I tested it. I had to manually connect each of the state nodes' finished signal
+	# to the _transition_to_next_state function held by the StateMachine Node in the actual scene.
 	for state_node: State in find_children("*", "State"):
 		state_node.finished.connect(_transition_to_next_state)
 
